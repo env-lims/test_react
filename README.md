@@ -19,7 +19,7 @@ If you are developing a production application, we recommend enabling type-aware
 {
   "$schema": "./node_modules/oxlint/configuration_schema.json",
   "plugins": ["react", "typescript", "oxc"],
-  "options": {
+  "options":
     "typeAware": true
   },
   "rules": {
@@ -30,3 +30,13 @@ If you are developing a production application, we recommend enabling type-aware
 ```
 
 See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+
+## Cloudflare Pages 자동 배포
+
+`main` 브랜치에 push하면 GitHub Actions가 Vite를 빌드하고 Cloudflare Pages에 배포합니다. 저장소의 Settings > Secrets and variables > Actions에 다음 Repository secrets를 등록하세요.
+
+- `CLOUDFLARE_API_TOKEN`: Pages 편집 권한이 있는 Cloudflare API Token
+- `CLOUDFLARE_ACCOUNT_ID`: Cloudflare 계정 ID
+- `CLOUDFLARE_PAGES_PROJECT`: Cloudflare Pages 프로젝트 이름
+- `VITE_SUPABASE_URL`: Supabase 프로젝트 URL
+- `VITE_SUPABASE_PUBLISHABLE_KEY`: Supabase Publishable key
