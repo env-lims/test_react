@@ -37,7 +37,7 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: pages project create ${{ secrets.CLOUDFLARE_PAGES_PROJECT }}
+          command: pages project create ${{ secrets.CLOUDFLARE_PAGES_PROJECT }} --production-branch main
 
       - name: Deploy Pages site
         uses: cloudflare/wrangler-action@v3
