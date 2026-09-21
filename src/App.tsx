@@ -123,15 +123,15 @@ function App() {
           <div className={`success-overlay${isLoggedIn ? ' active' : ''}`}>
             <div className="success-icon" aria-hidden="true">🎉</div>
             <h2 className="success-title">환영합니다!</h2>
-            <p className="success-desc">OMV7 파일브라우저 시스템에 정상적으로 연결되었습니다.</p>
+            <p className="success-desc">Env-LIMS 시스템에 정상적으로 연결되었습니다.</p>
             <button className="btn-logout" type="button" onClick={handleLogout}>돌아가기</button>
           </div>
 
           <header className="card-header">
             <div className="window-controls" aria-hidden="true"><span className="control-dot dot-red" /><span className="control-dot dot-yellow" /><span className="control-dot dot-green" /></div>
             <div className="logo-container" aria-hidden="true">📂</div>
-            <h1 id="login-title" className="brand-name">OMV7 CuteNAS</h1>
-            <p className="brand-subtitle">귀여운 간이 파일 브라우저 시스템</p>
+            <h1 id="login-title" className="brand-name">Env-LIMS</h1>
+            <p className="brand-subtitle">환경분야 실험실정보관리시스템</p>
           </header>
 
           <div className="card-body">
