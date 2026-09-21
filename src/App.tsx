@@ -5,6 +5,7 @@ import './App.css'
 type UserRecord = {
   id: string | number
   이메일: string
+  암호: string 
   이름: string | null
   권한: string | null
   상태: string | null
