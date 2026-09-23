@@ -8,7 +8,7 @@ type UserRecord = {
   이메일: string
   암호: string 
   이름: string | null
-  권한: string | null   -- DB의 '직책'을 AS로 받아옴
+  권한: string | null   // DB의 '직책'을 AS로 받아옴
   상태: string | null
 }
 
@@ -26,6 +26,7 @@ function App() {
   
   // 💡 [변경] 단순 boolean 스위치가 아니라, 로그인한 유저의 정보 자체를 기억하는 상태
   const [user, setUser] = useState<UserRecord | null>(null)
+  const [showLimsPage, setShowLimsPage] = useState(false)
 
   // ⚡ [추천 표준 로직] 브라우저가 처음 켜질 때, 기존에 저장된 세션이 있는지 체크 (새로고침 방지)
   useEffect(() => {
@@ -34,6 +35,16 @@ function App() {
       setUser(JSON.parse(savedUser))
     }
   }, [])
+
+  useEffect(() => {
+    if (!user) {
+      setShowLimsPage(false)
+      return
+    }
+
+    const timer = window.setTimeout(() => setShowLimsPage(true), 1800)
+    return () => window.clearTimeout(timer)
+  }, [user])
 
   const handleLogin = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
@@ -127,6 +138,22 @@ function App() {
     setEmail('')
     setPassword('')
     setMessage('')
+  }
+
+  if (showLimsPage) {
+    return (
+      <main className="lims-page">
+        <div className="lims-toolbar">
+          <span>환경정보 LIMS</span>
+          <button className="btn-logout" type="button" onClick={handleLogout}>로그아웃</button>
+        </div>
+        <iframe
+          className="lims-frame"
+          src="/lims_reception.html"
+          title="LIMS 접수 화면"
+        />
+      </main>
+    )
   }
 
   // 💡 유저 정보가 존재하는가에 따라 화면 렌더링 결정

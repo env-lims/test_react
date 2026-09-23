@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LIMS - 의뢰 접수 관리</title>
+  <style>
+    :root { --primary: #1a237e; --light: #eef0ff; --border: #e4e7ec; --text: #263238; }
+    * { box-sizing: border-box; }
+    body { margin: 0; color: var(--text); background: #f4f6fa; font-family: Arial, sans-serif; }
+    header { display: flex; align-items: center; justify-content: space-between; padding: 16px 28px; color: white; background: var(--primary); }
+    .logo { font-size: 20px; font-weight: 800; }
+    .user { display: flex; align-items: center; gap: 18px; font-size: 13px; }
+    main { display: flex; min-height: calc(100vh - 61px); }
+    aside { width: 280px; flex: 0 0 280px; border-right: 1px solid var(--border); background: white; }
+    .side-head { padding: 20px; border-bottom: 1px solid var(--border); font-weight: 700; }
+    .search { width: 100%; margin-top: 14px; padding: 10px; border: 1px solid var(--border); border-radius: 6px; }
+    .item { padding: 16px 20px; border-bottom: 1px solid #f0f1f3; cursor: pointer; }
+    .item.active, .item:hover { background: var(--light); }
+    .item-top { display: flex; justify-content: space-between; margin-bottom: 8px; font-weight: 700; }
+    .badge { padding: 3px 8px; border-radius: 12px; color: #ef6c00; background: #fff3e0; font-size: 11px; }
+    .badge.done { color: #2e7d32; background: #e8f5e9; }
+    .content { flex: 1; padding: 24px; overflow: auto; }
+    .action-bar, .card { margin-bottom: 20px; padding: 20px; border-radius: 10px; background: white; box-shadow: 0 2px 12px #0000000a; }
+    .action-bar { display: flex; align-items: center; justify-content: space-between; }
+    h1, h2 { margin: 0; color: var(--primary); } h1 { font-size: 19px; } h2 { margin-bottom: 18px; font-size: 15px; }
+    button { padding: 9px 14px; border: 1px solid var(--border); border-radius: 6px; color: var(--text); background: white; font-weight: 700; cursor: pointer; }
+    button.primary { color: white; border: 0; background: var(--primary); }
+    .buttons { display: flex; gap: 8px; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 16px; }
+    label { display: flex; flex-direction: column; gap: 7px; color: #555; font-size: 12px; font-weight: 700; }
+    input, select { padding: 10px; border: 1px solid var(--border); border-radius: 6px; font: inherit; }
+    table { width: 100%; border-collapse: collapse; font-size: 13px; } th, td { padding: 12px; border-bottom: 1px solid var(--border); text-align: center; } th { color: #666; background: #f8f9fa; }
+    @media (max-width: 700px) { header { padding: 14px 16px; } .user span { display: none; } aside { width: 170px; flex-basis: 170px; } .content { padding: 14px; } .action-bar { align-items: flex-start; flex-direction: column; gap: 12px; } .buttons { flex-wrap: wrap; } }
+  </style>
+</head>
+<body>
+  <header><div class="logo">⚗ K-LIMS PRO</div><div class="user"><span>중앙연구소</span><span>홍길동 선임연구원</span></div></header>
+  <main>
+    <aside><div class="side-head">☷ 접수 내역 현황<input class="search" placeholder="의뢰처 또는 접수번호 검색"></div><div class="item active"><div class="item-top"><span>R20230915-001</span><span class="badge">대기</span></div><strong>(주)제주식품</strong><small>2023-09-15</small></div><div class="item"><div class="item-top"><span>R20230914-042</span><span class="badge done">완료</span></div><strong>한라바이오텍</strong><small>2023-09-14</small></div></aside>
+    <section class="content">
+      <div class="action-bar"><h1>▣ 의뢰 접수 상세 정보</h1><div class="buttons"><button>신규</button><button class="primary" onclick="alert('데이터가 저장되었습니다.')">저장</button><button class="primary">접수완료</button><button>접수증</button></div></div>
+      <div class="card"><h2>ⓘ 의뢰자 및 기본 정보</h2><div class="grid"><label>접수번호<input value="R20230915-001" readonly></label><label>의뢰기관명<input value="(주)제주식품"></label><label>신청인 성명<input value="김철수"></label><label>비상 연락처<input value="010-1234-5678"></label><label>접수 일자<input type="date" value="2023-09-15"></label><label>검사 처리 기한<input type="date" value="2023-09-22"></label></div></div>
+      <div class="card"><h2>♧ 검체 및 분석 환경</h2><div class="grid"><label>검체명<input value="제주 삼다수 500ml"></label><label>검체 유형<select><option>먹는샘물 (지하수)</option><option>가공식품</option><option>농축산물</option></select></label><label>제조번호<input value="LOT-202308-A1"></label><label>입고 수량<input value="10병 / 5kg"></label></div></div>
+      <div class="card"><h2>☷ 분석 의뢰 시험 항목</h2><table><thead><tr><th>No</th><th>시험 항목명</th><th>법적 기준치</th><th>단위</th><th>분석 담당자</th><th>수수료</th></tr></thead><tbody><tr><td>1</td><td>일반세균 (Aerobic Count)</td><td>100 이하</td><td>CFU/mL</td><td>이영희</td><td>15,000</td></tr><tr><td>2</td><td>총 대장균군 (Total Coliforms)</td><td>불검출</td><td>/100mL</td><td>이영희</td><td>20,000</td></tr></tbody></table></div>
+    </section>
+  </main>
+</body>
+</html>
